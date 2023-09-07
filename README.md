@@ -36,11 +36,18 @@ The Nginx web server will serve to display the web pages to visitors,
 in order to install this we will be using the apt package manager along side the sudo command so a to grant admin privilages.
 The package was installed using the following command `sudo apt install nginx`
 Please note that the `-y` flag is to handle future prompts
+
 <img width="1280" alt="Nginx install" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/c04e87bf-e160-4555-875d-bb1815d75d4b">
 
 ## Verifying NGINX
 The instalation of Nginx can be confirmed using the following command to be assured that it is running properly.
 `sudo systemctl status nginx`
+
 <img width="841" alt="Nginx Check" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/898e0a85-6602-438c-84fc-8c107a068b8c">
+
+## Editing Inbound Rule
+###### Edited inbound rule such that connection through port 80 is allowed and from any ip address.<img width="1271" alt="editing inbound rule" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/b90f17dd-51aa-422a-a2e3-f19a52b4b278">
+
+
 
 
