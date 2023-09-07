@@ -39,15 +39,33 @@ Please note that the `-y` flag is to handle future prompts
 
 <img width="1280" alt="Nginx install" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/c04e87bf-e160-4555-875d-bb1815d75d4b">
 
-## Verifying NGINX
+## Verifying Nginx
 The instalation of Nginx can be confirmed using the following command to be assured that it is running properly.
 `sudo systemctl status nginx`
 
-<img width="841" alt="Nginx Check" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/898e0a85-6602-438c-84fc-8c107a068b8c">
+<img width="883" alt="Nginx status" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/ef0066b7-1e4e-4fa3-9d59-691664bc026b">
 
 ## Editing Inbound Rule
 ###### Edited inbound rule such that connection through port 80 is allowed and from any ip address.<img width="1271" alt="editing inbound rule" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/b90f17dd-51aa-422a-a2e3-f19a52b4b278">
 
 
+## Accessing Server
+##### Since our server is up and running we try to access it from our local machine and also from a web browser
+Accessing via the local machine, we are going to access via the IP and also via DNS name both of which will be carried out with the "curl command"
+Using the commands `curl http://127.0.0.1:80` `curl http://localhost:80`
 
+<img width="747" alt="curl ip   DNS" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/4251e216-7135-4ed2-b2fc-3f8e65ced545">
+
+We shall now be checking if the Nginx server can respond to internet requests via a web browser.
+This will be done using the public IP.
+We can use the following command to fetch the public IP from the local machine, instead of going on AWS EC2 instance using the command
+'curl -s http://169.254.169.254/latest/meta-data/public-ipv4'
+
+<img width="633" alt="public IP check" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/29264ebb-f743-4ac5-871d-f1c869395f58">
+
+Now that we have the public IP, we can now use it with the following command to check if Nginx responds to internet requests.
+Using a web browser, we will enter the public IP into the address bar with or without specifying port 80
+this is because all web browsers use port 80 by default.
+
+<img width="1023" alt="welcome Nginx" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/8473287b-8739-4ab1-8112-e966fcd6cf0f">
 
