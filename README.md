@@ -20,7 +20,6 @@ We will start this implementation by launching a Linux Ubuntu operating system f
 
 <img width="320" alt="pem file in dwnlds" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/d73e3fac-39ac-42ef-a5d3-844018d53cbe">
 
-
 ###### From Terminal, working directory was changed to the "Downloads" folder
 <img width="272" alt="cd Downloads" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/f0d64650-0ac8-40d6-b2ae-5177940e2a91">
 
@@ -205,3 +204,57 @@ Although this file can always be regenerated when needed.
 
 <img width="468" alt="removing php file" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/61d8d128-775c-4042-9e60-78e399ea8951">
 
+## Retrieving Data From MySQL Database With PHP
+To execute this, first we will have to connect to the MySQL console using the root privilage using the command `sudo mysql`
+
+Then we will create a database called example_database and a user called example_user with a password `passWord1` using the commands
+
+"mysql> CREATE DATABASE `example_database`;" and "`mysql>  CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';"
+
+<img width="670" alt="create database user   PW" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/84a72869-8198-4ea4-b518-ec3c4bd729de">
+
+
+Now we will need to give our user permission over the "exampl_database" database that was created.
+
+This is done so that the user will have full privilages over the database and is done with the command mysql> GRANT ALL ON example_database.* TO 'example_user'@'%';  after which we will type "exit" and enter to leave the MySQL console.
+
+<img width="447" alt="grant accss user" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/ace14cd6-bf68-4bad-8d92-1e8e1e28ab3b">
+
+
+Now we will test if the user has proper permission to the database by logging into mySQL again and using the custom user credentials
+
+We will do so using the command `mysql -u example_user -p` the -p flag in this command is to prompt for password, which will be thesame
+
+password used when creating the user account.
+
+<img width="558" alt="MySQL login costum" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/6df87e04-64da-4929-9fcd-edf8c7495c7e">
+
+
+To confirm that we have access to database, we will use the following command
+`mysql> SHOW DATABASES;`
+
+<img width="173" alt="show database" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/9b74ecff-1bf2-46c8-a0af-8c60fee2c779">
+
+From the MySQL console we are now going to create a table named to-do list by running the following statement.
+
+`CREATE TABLE example_database.todo_list (item_id INT AUTO_INCREMENT,content VARCHAR(255),PRIMARY KEY(item_id));`
+
+ Then we will insert a few rows of content into the created table using the statement 
+ 
+ `INSERT INTO example_database.todo_list (content) VALUES ("My first important item");`
+
+  `INSERT INTO example_database.todo_list (content) VALUES ("My second important item");`
+
+ `INSERT INTO example_database.todo_list (content) VALUES ("My third important item");`
+
+ <img width="655" alt="todo add" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/2c0b269f-7c16-440d-b750-177faf5da413">
+
+
+ Now we will have to confirm if the data was successfully added to the table using the command
+ 
+ `SELECT * FROM example_database.todo_list;`
+
+ <img width="357" alt="table display" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/b9425514-6edf-4da4-ba3c-330890576c48">
+
+
+ 
