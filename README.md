@@ -296,3 +296,4 @@ and we will exit the VI editor with the command `:wq!`
 
  This result indicates the our PHP environment is ready to connect and interact with MySQL server.
  
+---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
