@@ -256,5 +256,43 @@ From the MySQL console we are now going to create a table named to-do list by ru
 
  <img width="357" alt="table display" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/b9425514-6edf-4da4-ba3c-330890576c48">
 
+Now we can exit MySQL like we did before by typing "exit" + enter
 
+Now in the costum we root directory, we are going to create a PHP script which we will name `todo-list.php`
+
+that will connect to MySQL and query for the created content.
+
+For this, we will be using the VI editor with the following command
+
+`vi /var/www/projectLEMP/todo_list.php` and pasting the following lines of code 
+
+<?php
+$user = "example_user";
+$password = "PassWord.1";
+$database = "example_database";
+$table = "todo_list";
+
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>";
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
+
+and we will exit the VI editor with the command `:wq!`
+
+<img width="537" alt="vi todo-list" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/e7f405b3-76a0-4c10-b885-4beea65d429f">
+
+ Now we can check from our web browser using the same method of using the public IP or DNS + /todo_list.php in the format
+ 
+ `http://<Public_domain_or_IP>/todo_list.php`
+
+ <img width="430" alt="todo_list web display" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/587e5903-4dbb-44f7-a245-370116439843">
+
+ This result indicates the our PHP environment is ready to connect and interact with MySQL server.
  
