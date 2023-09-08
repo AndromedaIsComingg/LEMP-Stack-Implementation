@@ -158,6 +158,9 @@ Also, we will be testing this configuration using `sudo nginx -t`
 
 <img width="740" alt="enable test Nginx" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/3d7e7295-3d73-4858-895e-354b21f2752a">
 
+
+##### Unlinking port 80 & Reloading Nginx
+
 For this too run, Nginx host that was previosuly configured to run on port 80 needs to be diabled and the Nginx reloaded
 
 we will carry out those operations using the following commands.
@@ -168,4 +171,37 @@ we will carry out those operations using the following commands.
 
 <img width="405" alt="realod" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/96c14619-70ac-49c5-bbb7-bff76347f0d9">
 
+
+##### Testing Server Block
+Now we will create an index.html file in the newly created empty directory to test if our new server block is working as expected
+
+we will do that using the commad `sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectLEMP/index.html`
+
+<img width="1280" alt="echo" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/65532bae-eae9-4c75-87e5-e604b0c260cf">
+
+Now from our web browser we can confirm this by entering the public IP and see if the echo message gets displayed.
+
+<img width="791" alt="web test active" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/2f5fddb7-91bb-4cfc-b362-bf856ea7eee2">
+
+## Testing PHP with Nginx
+Now that out LEMP is fully operational, we will test to validate that Nginx can correctly hand .php files off to our PHP processor.
+
+We will be doing this by creating a PHP file called info.php in our document root using the nano text editor using the following command
+`nano /var/www/projectLEMP/info.php` after which we will be pasting the folling valid lines of code.
+`<?php
+phpinfo();`
+
+<img width="260" alt="nano php" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/b9002430-220a-4d0c-aadf-f30b3bcee49c">
+
+Now we can access the PHP page using a web browser by inputing the public IP address followed by `/info.php`
+
+<img width="1089" alt="php page" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/7aeca848-e48c-4cb3-9b2a-a2285fed3b2d">
+
+It is of best practice to remove the newly created PHP file as it contains sensitive information about the PHP environment.
+
+We will be doing that using the `mv` command  `sudo rm /var/www/your_domain/info.php`
+
+Although this file can always be regenerated when needed.
+
+<img width="468" alt="removing php file" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/61d8d128-775c-4042-9e60-78e399ea8951">
 
