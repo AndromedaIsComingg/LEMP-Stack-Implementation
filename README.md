@@ -89,3 +89,27 @@ this is because all web browsers use port 80 by default.
 ##### The "mysql> exit" command was used to exit the MySQL console.
 
 <img width="580" alt="login test   exit" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/ed835c52-1429-4213-b3a9-4c8eac184d0c">
+
+## Installing PHP
+Now that we have Nginx to serve web services and MySQL to handle database,
+we can now procede to install PHP to process code and generate dynamic content for the web server.
+To use an Nginx server, we will need to install some external programs for it to communicate with PHP.
+They are `php-fpm` (PHP fastCGI process manager) and `php-mysql`, a PHP module that helps PHP to communicate with MySQL-based database.
+These two packages can be installed using the command `sudo apt install php-fpm php-mysql`
+<img width="920" alt="two external progs" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/9251a042-9870-467c-924d-385420b4ce24">
+
+## Configuring Nginx to Use PHP Processor
+Similar to the use of virtual hosts in Apache, Nginx web server have server blocks can also be configured to accomodate configuration details
+and host more than one domain on a single server.
+To acheive this we will have to create a new working directory leaving var/www/html in its place as the default directory
+which will be served if client's directory does match any other site.
+we will name this directory "projectLEMP" which will be created with the following command `sudo mkdir /var/www/projectLEMP`
+
+<img width="432" alt="mkdir projLEMP" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/794e7552-bc31-4f65-bf63-6a6e0df5e9ae">
+
+Then we assign ownership which will reference to the current system user with the command `sudo chown -R $USER:$USER /var/www/projectLEMP`
+<img width="524" alt="chown projLEMP" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/85868654-766a-4815-a4da-5aac9123cfd1">
+
+Now using any command line editor, we will open a new configuration file in Nginx's site-available directory using the command
+`sudo nano /etc/nginx/sites-available/projectLEMP`
+
