@@ -100,16 +100,72 @@ These two packages can be installed using the command `sudo apt install php-fpm 
 
 ## Configuring Nginx to Use PHP Processor
 Similar to the use of virtual hosts in Apache, Nginx web server have server blocks can also be configured to accomodate configuration details
+
 and host more than one domain on a single server.
+
 To acheive this we will have to create a new working directory leaving var/www/html in its place as the default directory
+
 which will be served if client's directory does match any other site.
+
 we will name this directory "projectLEMP" which will be created with the following command `sudo mkdir /var/www/projectLEMP`
 
 <img width="432" alt="mkdir projLEMP" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/794e7552-bc31-4f65-bf63-6a6e0df5e9ae">
 
 Then we assign ownership which will reference to the current system user with the command `sudo chown -R $USER:$USER /var/www/projectLEMP`
+
 <img width="524" alt="chown projLEMP" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/85868654-766a-4815-a4da-5aac9123cfd1">
 
 Now using any command line editor, we will open a new configuration file in Nginx's site-available directory using the command
-`sudo nano /etc/nginx/sites-available/projectLEMP`
+
+`sudo nano /etc/nginx/sites-available/projectLEMP`, inside which we will paste the following lines of code,
+
+and exit with ctrl+x since we are using the nano editor.
+
+`#/etc/nginx/sites-available/projectLEMP
+
+server {
+    listen 80;
+    server_name projectLEMP www.projectLEMP;
+    root /var/www/projectLEMP;
+
+    index index.html index.htm index.php;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+     }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+}'
+
+<img width="430" alt="nano edit" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/87bfc38a-ceed-461e-a58a-44586405a7e3">
+
+##### Activating Configuration
+This is done by linking the configuration file from the Nginx's sites-enabled directoy
+
+using the code `sudo ln -s /etc/nginx/sites-available/projectLEMP /etc/nginx/sites-enabled/'
+
+This prepers Nginx to use the configuration file when next it is loading.
+
+Also, we will be testing this configuration using `sudo nginx -t`
+
+<img width="740" alt="enable test Nginx" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/3d7e7295-3d73-4858-895e-354b21f2752a">
+
+For this too run, Nginx host that was previosuly configured to run on port 80 needs to be diabled and the Nginx reloaded
+
+we will carry out those operations using the following commands.
+
+`sudo unlink /etc/nginx/sites-enabled/default` and `sudo systemctl reload nginx`
+
+<img width="555" alt="unlink" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/b82f882e-7edb-455d-841e-84ce41ff4921">
+
+<img width="405" alt="realod" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/96c14619-70ac-49c5-bbb7-bff76347f0d9">
+
 
