@@ -10,31 +10,43 @@ It is similar to LAMP Stack with the major difference beineg that the web server
 We will start this implementation by launching a Linux Ubuntu operating system from our AWS EC2 compute service.
 
 ## AWS Account & EC2 Instance
-###### Created an AWS Account and spinned an EC2 instance named `For Instance`
+###### Creating an AWS Account and spinning an EC2 instance.
+From the AWS web platform `AWS.Amazom.com` we will sign up and create an account, after which we will check for EC2 in the compute services.
+
+For this purpose an instance was created which was named `For Instance`
 <img width="1280" alt="AWS Acct" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/14e2925b-50d3-4442-8bae-1dbc8768da8a">
 
 
-## Private Key
-###### Created and downloaded a private key named `1stkey`
+## Creating a private Key
+###### Create and download a private key from the console
+The private key created here was named `1stkey`
+
 ###### The .pem file was saved in the "Downloads" folder as shown below
 
 <img width="320" alt="pem file in dwnlds" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/d73e3fac-39ac-42ef-a5d3-844018d53cbe">
 
-###### From Terminal, working directory was changed to the "Downloads" folder
+###### From Terminal, working directory should be changed to the "Downloads" folder
+
+This is done to direct terminal to recognize the generated key file from the diretory where it was saved.
 <img width="272" alt="cd Downloads" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/f0d64650-0ac8-40d6-b2ae-5177940e2a91">
 
-###### From Terminal, permission was changed for the private key.
+###### From Terminal, permission should be changed for the private key.
+
+This is done to grant access to the key file.
+
 <img width="412" alt="changing permission for private key" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/6890a6f6-da94-49d0-a2e5-cc5894f8888d">
 
 ## Connecting to the EC2 Instance
-###### Connected to the EC2 instance by running the command `ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>`
+###### Connect to the EC2 instance by running the command `ssh -i <private-key-name>.pem ubuntu@<Public-IP-address>`
+This connects terminal to the EC2 instance using SSH, which is a Secure Shell network communication protocol that enables two computers to communicate.
+
 <img width="598" alt="starting ubuntu" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/26d1bd55-66c9-4463-b6f2-404f2108b137">
 
 ## Installing Nginx Web Server
 The Nginx web server will serve to display the web pages to visitors,
-in order to install this we will be using the apt package manager along side the sudo command so a to grant admin privilages.
+in order to install this we will be using the apt package manager along side the sudo command so as to grant admin privilages.
 The package was installed using the following command `sudo apt install nginx`
-Please note that the `-y` flag is to handle future prompts
+Please note that the `-y` flag is to handle future prompts of yes/no
 
 <img width="1280" alt="Nginx install" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/c04e87bf-e160-4555-875d-bb1815d75d4b">
 
@@ -45,17 +57,21 @@ The instalation of Nginx can be confirmed using the following command to be assu
 <img width="883" alt="Nginx status" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/ef0066b7-1e4e-4fa3-9d59-691664bc026b">
 
 ## Editing Inbound Rule
-###### Edited inbound rule such that connection through port 80 is allowed and from any ip address.<img width="1271" alt="editing inbound rule" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/b90f17dd-51aa-422a-a2e3-f19a52b4b278">
+###### Now we will edit inbound rule such that connection through port 80 is allowed and from any ip address.<img width="1271" alt="editing inbound rule" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/b90f17dd-51aa-422a-a2e3-f19a52b4b278">
 
 
 ## Accessing Server
-##### Since our server is up and running we try to access it from our local machine and also from a web browser
+##### Since our server is up and running we will try to access it from our local machine and also from a web browser
 Accessing via the local machine, we are going to access via the IP and also via DNS name both of which will be carried out with the "curl command"
-Using the commands `curl http://127.0.0.1:80` `curl http://localhost:80`
+Using the commands 
+```html
+curl http://127.0.0.1:80
 
+curl http://localhost:80
+```
 <img width="747" alt="curl ip   DNS" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/4251e216-7135-4ed2-b2fc-3f8e65ced545">
 
-We shall now be checking if the Nginx server can respond to internet requests via a web browser.
+##### Checking if the Nginx server can respond to internet requests via a web browser.
 This will be done using the public IP.
 We can use the following command to fetch the public IP from the local machine, instead of going on AWS EC2 instance using the command
 'curl -s http://169.254.169.254/latest/meta-data/public-ipv4'
@@ -84,17 +100,22 @@ this is because all web browsers use port 80 by default.
 
 
 ##### When done, tested to login into the MySQL console by using the command `sudo mysql -p`
-##### The -p flag prompts for password after the root user password has been chnaged.
+##### The -p flag prompts for password after the root user password has been changed.
 ##### The "mysql> exit" command was used to exit the MySQL console.
 
 <img width="580" alt="login test   exit" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/ed835c52-1429-4213-b3a9-4c8eac184d0c">
 
 ## Installing PHP
 Now that we have Nginx to serve web services and MySQL to handle database,
+
 we can now procede to install PHP to process code and generate dynamic content for the web server.
+
 To use an Nginx server, we will need to install some external programs for it to communicate with PHP.
+
 They are `php-fpm` (PHP fastCGI process manager) and `php-mysql`, a PHP module that helps PHP to communicate with MySQL-based database.
+
 These two packages can be installed using the command `sudo apt install php-fpm php-mysql`
+
 <img width="920" alt="two external progs" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/9251a042-9870-467c-924d-385420b4ce24">
 
 ## Configuring Nginx to Use PHP Processor
@@ -120,7 +141,8 @@ Now using any command line editor, we will open a new configuration file in Ngin
 
 and exit with ctrl+x since we are using the nano editor.
 
-`#/etc/nginx/sites-available/projectLEMP
+```html
+#/etc/nginx/sites-available/projectLEMP
 
 server {
     listen 80;
@@ -143,6 +165,7 @@ server {
     }
 
 }'
+```
 
 <img width="430" alt="nano edit" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/87bfc38a-ceed-461e-a58a-44586405a7e3">
 
@@ -168,6 +191,7 @@ we will carry out those operations using the following commands.
 
 <img width="555" alt="unlink" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/b82f882e-7edb-455d-841e-84ce41ff4921">
 
+
 <img width="405" alt="realod" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/96c14619-70ac-49c5-bbb7-bff76347f0d9">
 
 
@@ -185,10 +209,12 @@ Now from our web browser we can confirm this by entering the public IP and see i
 ## Testing PHP with Nginx
 Now that out LEMP is fully operational, we will test to validate that Nginx can correctly hand .php files off to our PHP processor.
 
-We will be doing this by creating a PHP file called info.php in our document root using the nano text editor using the following command
-`nano /var/www/projectLEMP/info.php` after which we will be pasting the folling valid lines of code.
-`<?php
-phpinfo();`
+We will be doing this by creating a PHP file named "info.php" in our document root using the nano text editor using the following command
+`nano /var/www/projectLEMP/info.php` after which we will be pasting the following valid lines of code.
+```html
+<?php
+phpinfo();
+```
 
 <img width="260" alt="nano php" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/b9002430-220a-4d0c-aadf-f30b3bcee49c">
 
@@ -209,7 +235,14 @@ To execute this, first we will have to connect to the MySQL console using the ro
 
 Then we will create a database called example_database and a user called example_user with a password `passWord1` using the commands
 
-"mysql> CREATE DATABASE `example_database`;" and "`mysql>  CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';"
+```html
+mysql> CREATE DATABASE `example_database`;
+```
+ and
+ 
+ ```html
+mysql>  CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
+```
 
 <img width="670" alt="create database user   PW" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/84a72869-8198-4ea4-b518-ec3c4bd729de">
 
@@ -231,7 +264,9 @@ password used when creating the user account.
 
 
 To confirm that we have access to database, we will use the following command
+```html
 `mysql> SHOW DATABASES;`
+```
 
 <img width="173" alt="show database" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/9b74ecff-1bf2-46c8-a0af-8c60fee2c779">
 
@@ -266,6 +301,7 @@ For this, we will be using the VI editor with the following command
 
 `vi /var/www/projectLEMP/todo_list.php` and pasting the following lines of code 
 
+```html
 <?php
 $user = "example_user";
 $password = "PassWord.1";
@@ -283,8 +319,10 @@ try {
     print "Error!: " . $e->getMessage() . "<br/>";
     die();
 }
+```
 
 and we will exit the VI editor with the command `:wq!`
+
 
 <img width="537" alt="vi todo-list" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/e7f405b3-76a0-4c10-b885-4beea65d429f">
 
@@ -294,6 +332,6 @@ and we will exit the VI editor with the command `:wq!`
 
  <img width="430" alt="todo_list web display" src="https://github.com/AndromedaIsComingg/LEMP-Stack-Implementation/assets/140917780/587e5903-4dbb-44f7-a245-370116439843">
 
- This result indicates the our PHP environment is ready to connect and interact with MySQL server.
+ Hurray!!! This result indicates the our PHP environment is ready to connect and interact with MySQL server and our LEMP Stack has been successfully configured.
  
 ---------------------------------![Alt Text](https://cssbud.com/wp-content/uploads/2021/05/thanks-for-your-time.gif)---------------------------------------------
