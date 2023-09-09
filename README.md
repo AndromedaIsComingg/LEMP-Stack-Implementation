@@ -27,7 +27,7 @@ The private key created here was named `1stkey`
 
 ###### From Terminal, working directory should be changed to the "Downloads" folder
 
-This is done to direct terminal to recognize the generated key file from the diretory where it was saved.
+This is done to direct terminal to recognize the generated key file from the directory where it was saved.
 <img width="272" alt="cd Downloads" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/f0d64650-0ac8-40d6-b2ae-5177940e2a91">
 
 ###### From Terminal, permission should be changed for the private key.
