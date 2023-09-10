@@ -32,7 +32,8 @@ This is done to direct terminal to recognize the generated key file from the dir
 
 ###### From Terminal, permission should be changed for the private key.
 
-This is done to grant access to the key file.
+This is done to grant access to the key file using the command `sudo chmod 0400 1stkey.pem`
+Please note that that file extension must be added to the name of the key file.
 
 <img width="412" alt="changing permission for private key" src="https://github.com/AndromedaIsComingg/Lamp-Stack-Implementation/assets/140917780/6890a6f6-da94-49d0-a2e5-cc5894f8888d">
 
